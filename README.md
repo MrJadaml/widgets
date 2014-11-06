@@ -1,6 +1,6 @@
-This is how you CRUD:
+#This is how you CRUD:
 
-#Terminal
+####Terminal
 rails new widgets --database=postgresql
 cd widgets
 bundle
@@ -9,15 +9,16 @@ rake db:create
 ~open new terminal tab which will be dedicated to your rails server
 rails s
 
-#Browser
+####Browser
 go to localhost3000
 
 #Terminal
 rails g migration MyWidgetsAndThings
 atom .
 
-#Atom
->>> db/migrate/395843344737_my_widgets_and_things.rb
+####Atom
+Go to:
+>> db/migrate/395843344737_my_widgets_and_things.rb
 create a new database table with the following code:
 
 ```Ruby
@@ -33,7 +34,7 @@ Datatypes to choose from: http://stackoverflow.com/questions/17918117/rails-4-da
 rake db:migrate
 
 
-#Atom
+####Atom
 >>> config/routes.rb
 delete all the commented out text and add the following code:
 
@@ -152,8 +153,8 @@ in the `private` section.
 * create a widget
 * check 3000 ~> it's saved but just not showing.
 
->>> views/widgets/index.html.erb
-drop in the following code
+> views/widgets/index.html.erb
+The following code will create a table to list all of your widgets:
 
 ```Html
   <% @widgets.each do |widget| %>
