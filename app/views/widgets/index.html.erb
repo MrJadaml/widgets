@@ -12,8 +12,8 @@
     <td><%= widget.name %></td>
     <td><%= widget.description %></td>
     <td><%= widget.age %></td>
-    <td><%= link_to 'Edit', '#' %></td>
-    <td><%= link_to 'Show', '#' %></td>
+    <td><%= link_to 'Edit', edit_widget_path(widget) %></td>
+    <td><%= link_to 'Show', widget_path(widget) %></td>
     <td><%= link_to 'Delete', '#' %></td>
   </tr>
 </table>

@@ -14,6 +14,19 @@ class WidgetsController < ApplicationController
     redirect_to root_path
   end
 
+  def edit
+    @widget = Widget.find(params[:id])
+  end
+
+  def update
+    @widget = Widget.find(params[:id])
+    if @widget.update(widget_params)
+      redirect_to root_path
+    else
+      render :edit
+    end
+  end
+
   private
 
   def widget_params
