@@ -18,7 +18,6 @@ Go to: localhost3000 and you should see the Rail welcome page.
 `atom .`
 
 ####Atom
-Go to:
 > db/migrate/395843344737_my_widgets_and_things.rb
 create a new database table with the following code:
 
@@ -29,10 +28,10 @@ create a new database table with the following code:
     t.integer :age
   end
 ```
-Datatypes to choose from: http://stackoverflow.com/questions/17918117/rails-4-datatypes
+* Additional datatypes to choose from: http://stackoverflow.com/questions/17918117/rails-4-datatypes
 
 ####Terminal
-rake db:migrate
+`rake db:migrate`
 
 ####Atom
 > config/routes.rb
@@ -59,10 +58,10 @@ end
 * check 3000
 
 > app/views
-create a folder named widgets
-create a file named index.html.erb
+Create a folder named widgets. Then create a file named index.html.erb
 
-drop in the following code:
+Drop in the following code:
+
 ```Html
   <h1>Widgets</h1>
   <%= link_to "New Widget", new_widget_path %>
@@ -70,7 +69,8 @@ drop in the following code:
 * check 3000
 
 > app/controllers/widgets_controller.rb
-drop in the following code:
+Drop in the following code:
+
 ```Ruby
   def new
   end
@@ -80,6 +80,7 @@ drop in the following code:
 > app/views
 create a file named new.html.erb
 drop in the following code:
+
 ```Html
   <h1>Widget Factory</h1>
   <%= form_for @widget do |f| %>
@@ -93,7 +94,7 @@ drop in the following code:
     <%= f.text_field :age %>
 
     <%= f.submit %>
-<% end %>
+  <% end %>
 ```
 * check 3000
 
@@ -108,6 +109,7 @@ drop the following code inside your new action:
 create a file named widget.rb
 
 drop in the following code:
+
 ```Ruby
   class Widget < ActiveRecord::Base
 
@@ -235,7 +237,7 @@ Under your edit action add an update action.
   def update
   end
 ```
-* check 3000 ~> 'Missing template widgets/update,'
+* check 3000 ~> 'Missing template widgets/update'
 
 > /controllers/widgets_controller.rb
 Update doesn't get a view. We want to make sure all the right data is updated for
@@ -259,3 +261,28 @@ Next up the show link. Let's fix the fact that it currently doesn't go anywhere
 by replacing the `'#'` with the path `widget_path(widget)`
 
 * check 3000 ~> The action 'show' could not be found for WidgetsController
+
+> /controllers/widgets_controller.rb
+Under your update action add an show action.
+
+```Ruby
+  def show
+  end
+```
+* check 3000 ~> 'Missing template widgets/show'
+
+> /views/widgets
+Create a new view called show.html.erb
+If you check localhost you will see there is no more error, but the page is blank.
+Drop in the following code to show your widge:
+
+```Html
+  <h1><%= @widget.name %></h1>
+  <%= link_to 'All Widgets', widgets_path %> |
+  <%= link_to 'Edit', edit_widget_path(@widget) %>
+```
+* check 3000 ~> You will see a 'NoMethodError': 'undefined method `name' for nil:NilClass'
+This is because we have not set our widgets instance variable in the show action yet.
+
+> /controllers/widgets_controller.rb
+Add `@widget = Widget.find(params[:id])` Inside your show action.
