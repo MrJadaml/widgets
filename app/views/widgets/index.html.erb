@@ -14,7 +14,7 @@
     <td><%= widget.age %></td>
     <td><%= link_to 'Edit', edit_widget_path(widget) %></td>
     <td><%= link_to 'Show', widget_path(widget) %></td>
-    <td><%= link_to 'Delete', '#' %></td>
+    <td><%= link_to 'Delete', widget_path(widget), method: :delete %></td>
   </tr>
 </table>
 <% end %>

@@ -31,6 +31,12 @@ class WidgetsController < ApplicationController
     @widget = Widget.find(params[:id])
   end
 
+  def destroy
+    @widget = Widget.find(params[:id])
+    @widget.destroy
+    redirect_to widgets_path
+  end
+
   private
 
   def widget_params

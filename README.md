@@ -1,20 +1,20 @@
 #This is how you do basic CRUD:
 
 ####Terminal
-`rails new widgets --database=postgresql`
-`cd widgets`
-`bundle`
-`rake db:create`
+`rails new widgets --database=postgresql` \n
+`cd widgets` \n
+`bundle` \n
+`rake db:create` \n
 
-##### Terminal #2
-This second terminal tab will be dedicated to your rails server
+##### Terminal/second tab
+This second terminal tab will be dedicated to your rails server that will be \n left running most of the time.
 `rails s`
 
 ####Browser
 Go to: localhost3000 and you should see the Rail welcome page.
 
 ####Terminal
-`rails g migration MyWidgetsAndThings`
+`rails g migration MyWidgetsAndThings` \n
 `atom .`
 
 ####Atom
@@ -253,7 +253,6 @@ code:
     render :edit
   end
 ```
-
 * check 3000 ~> We should see that the edits we made updated properly.
 
 > /views/widgets/index.html.erb
@@ -274,10 +273,12 @@ Under your update action add an show action.
 > /views/widgets
 Create a new view called show.html.erb
 If you check localhost you will see there is no more error, but the page is blank.
-Drop in the following code to show your widge:
+Drop in the following code to show your widget:
 
 ```Html
   <h1><%= @widget.name %></h1>
+  <%= @widget.description %></br>
+  <%= @widget.age %></br>
   <%= link_to 'All Widgets', widgets_path %> |
   <%= link_to 'Edit', edit_widget_path(@widget) %>
 ```
@@ -286,3 +287,62 @@ This is because we have not set our widgets instance variable in the show action
 
 > /controllers/widgets_controller.rb
 Add `@widget = Widget.find(params[:id])` Inside your show action.
+
+* check 3000 ~> You should see your widget's name in bold and its description and age.
+* Click the 'All Widgets' link to get back to the index page.
+
+> /views/widgets/index.html.erb
+Let's replace the `'#'` for the final, 'Delete', link with the following:
+`project_path(project)` we will also add in a comma and additional functionality
+that the destroy action requires in the form of: `, method: :delete`
+
+The full line should now look something like this:
+`<td><%= link_to 'Delete', widget_path(widget), method: :delete %></td>`
+
+* check 3000 ~> Click on your 'Delete' link and you should get a familiar 'Unknown action' fail screen.
+
+> /controllers/widgets_controller.rb
+To remedy that we will add a destroy action.
+
+```Ruby
+ def destroy
+ end
+```
+* check 3000 ~> Now the expected 'Template is missing' fail screen.
+
+> /controllers/widgets_controller.rb
+Just like our create and update actions, the destroy action will not require a
+view. Instead we will verify the widget, destroy the widget, and
+then redirect the user to the index page within the action with the following code:
+
+```Ruby
+  @widget = Widget.find(params[:id])
+  @widget.destroy
+  redirect_to widgets_path
+```
+* check 3000 ~> Click the 'Delete' link and it should disapear. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+...
