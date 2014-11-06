@@ -1,0 +1,20 @@
+<h1>Widgets</h1>
+<%= link_to "New Widget", new_widget_path %>
+
+<% @widgets.each do |widget| %>
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Age</th>
+  </tr>
+  <tr>
+    <td><%= widget.name %></td>
+    <td><%= widget.description %></td>
+    <td><%= widget.age %></td>
+    <td><%= link_to 'Edit', '#' %></td>
+    <td><%= link_to 'Show', '#' %></td>
+    <td><%= link_to 'Delete', '#' %></td>
+  </tr>
+</table>
+<% end %>
