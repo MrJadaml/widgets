@@ -1,0 +1,10 @@
+%h1= @widget.name
+= @widget.description
+= @widget.age
+= @widget.image
+%br
+= link_to 'All Widgets', widgets_path
+|
+= link_to 'Edit', edit_widget_path(@widget)
+|
+= link_to 'Delete', widget_path(@widget), method: :delete

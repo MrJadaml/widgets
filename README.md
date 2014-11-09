@@ -356,6 +356,82 @@ Feel free to mess around with the code, break it, add some bootstrap, add anothe
 round of crud, whatever.
 
 
+--------------------------------------------------------
+--------------------------------------------------------
+
+
+# Installing bootstrap
+https://github.com/twbs/bootstrap-sass
+
+* Add `gem 'bootstrap-sass', '~> 3.2.0'` and `gem 'autoprefixer-rails'` to your Gemfile
+* Run `bundle` in your terminal
+
+Add the following at the bottom of your application.css file, and change the
+name to application.css.scss
+
+``` Ruby
+@import "bootstrap-sprockets";
+@import "bootstrap";
+```
+
+Add `//= require bootstrap-sprockets` inside your application.js file
+
+
+-------------------------------------------------------
+-------------------------------------------------------
+
+
+# Installing carrierwave
+
+* Add `gem 'carrierwave'` to you Gemfile
+* In terminal run:
+    * `bundle install`
+    * `rails g uploader SomeName`
+
+You should have a new uploader at app/uploaders/somename_uploader.rb
+
+In terminal run:
+
+`rails g migration AddSomeDataThings`
+
+Go to your new migration in db/migrate/0000000000add_some_data_things and inside
+the change method add the following attributes. The first will be the table name
+you want to add it to,the second will be what you want the name of the data
+attribute to be, and the third will be string as required by carrierwave.
+
+`add_column :widgets, :image, :string`
+
+In terminal you'll now need to migrate those changes: `rake db:migrate`
+
+To get the upload button you will need to add this to your forms:
+
+```Haml
+= f.label :image
+= f.file_field :image
+= f.hidden_field :image_cache
+```
+
+Don't forget to now allow `:image` and `:image_cache` to be added in with your
+other `.permit` arguments in your controller's existing params method.
+
+```Ruby
+def widget_params
+  params.require(:widget).permit(:name, :description, :age, :image, :image_cache)
+end
+```
+
+The haml syntax for dropping in images: `= image_tag widget.image` and if you
+want a resized version like a :thumb: `= image_tag widget.image.url(:thumb)`
+
+To do any sort of image processing like resizing versions upon upload or anything
+else you'll need to `brew install imagemagick` if you don't already have it
+installed. You will also need to uncomment out `include CarrierWave::MiniMagick`
+inside your uploader.rb file and add `gem 'mini_magick'` to your Gemfile.
+
+
+---------------------------------------------------------------
+---------------------------------------------------------------
+
 
 
 

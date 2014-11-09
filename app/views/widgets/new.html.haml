@@ -1,0 +1,16 @@
+%h1 Widget Factory
+= form_for @widget do |f|
+  = f.label :name
+  = f.text_field :name
+
+  = f.label :description
+  = f.text_field :description
+
+  = f.label :age
+  = f.text_field :age
+
+  = f.label :image
+  = f.file_field :image
+  = f.hidden_field :image_cache
+
+  = f.submit

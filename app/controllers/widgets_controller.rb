@@ -40,6 +40,6 @@ class WidgetsController < ApplicationController
   private
 
   def widget_params
-    params.require(:widget).permit(:name, :description, :age)
+    params.require(:widget).permit(:name, :description, :age, :image, :image_cache)
   end
 end

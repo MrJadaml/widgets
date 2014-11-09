@@ -1,0 +1,9 @@
+.container
+  %h1 Widgets
+  - @widgets.each do |widget|
+    .box.panel.panel-default.col-lg-3
+      .panel-body.text-center
+        .col-md-3
+          = image_tag widget.image
+          = link_to widget.name, widget_path(widget)
+  = link_to "New Widget", new_widget_path, class: 'btn btn-primary'
